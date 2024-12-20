@@ -29,7 +29,7 @@ public class ParImparBatchConfig {
     @Bean
     public Step imprimeParImparStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("imprimeParImparStep", jobRepository)
-                .<Integer, String>chunk(10, transactionManager)// Pode ser aumentado, porém deve levar a memória em conta, o ideal é salvar pedaços
+                .<Integer, String>chunk(10, transactionManager)
                 .reader(contaAteDezReader())
                 .processor(parOuImparProcessor())
                 .writer(imprimeWriter())
